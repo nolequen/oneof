@@ -15,6 +15,7 @@ import java.util.Map;
 public class GenerateOneOf extends DefaultTask {
   private @NotNull String template;
   private @NotNull String key;
+  private @NotNull String dir;
   private int count;
 
   @Input
@@ -44,10 +45,19 @@ public class GenerateOneOf extends DefaultTask {
     this.count = count;
   }
 
+  @Input
+  public @NotNull String getDir() {
+    return dir;
+  }
+
+  public void setDir(@NotNull String dir) {
+    this.dir = dir;
+  }
+
   @TaskAction
   public void generate() {
     for (int i = 2; i <= count; i++) {
-      final var filename = getProject().getRootDir() + "/src/main/java/io/upwake/oneof/OneOf" + i + ".java";
+      final var filename = dir + "/src/main/java/io/upwake/oneof/OneOf" + i + ".java";
       new File(filename).delete();
       try (var writer = new OutputStreamWriter(new FileOutputStream(filename))) {
         template().process(Map.of(key, i), writer);
@@ -62,7 +72,7 @@ public class GenerateOneOf extends DefaultTask {
     configuration.setDefaultEncoding("UTF-8");
     configuration.setLocale(Locale.US);
     configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-    configuration.setDirectoryForTemplateLoading(new File(getProject().getRootDir() + "/templates"));
+    configuration.setDirectoryForTemplateLoading(new File(dir + "/templates"));
     return configuration.getTemplate(template);
   }
 }
