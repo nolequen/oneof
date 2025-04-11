@@ -19,28 +19,6 @@ public class OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> {
   private final @Nullable T8 value8;
   private final @Nullable T9 value9;
 
-  protected OneOf9(
-      @Nullable T1 value1,
-      @Nullable T2 value2,
-      @Nullable T3 value3,
-      @Nullable T4 value4,
-      @Nullable T5 value5,
-      @Nullable T6 value6,
-      @Nullable T7 value7,
-      @Nullable T8 value8,
-      @Nullable T9 value9
-  ) {
-    this.value1 = value1;
-    this.value2 = value2;
-    this.value3 = value3;
-    this.value4 = value4;
-    this.value5 = value5;
-    this.value6 = value6;
-    this.value7 = value7;
-    this.value8 = value8;
-    this.value9 = value9;
-  }
-
   public static @NotNull <T1, T2, T3, T4, T5, T6, T7, T8, T9> OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> of1(@NotNull T1 value) {
     return new OneOf9<>(value, null, null, null, null, null, null, null, null);
   }
@@ -75,6 +53,26 @@ public class OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> {
 
   public static @NotNull <T1, T2, T3, T4, T5, T6, T7, T8, T9> OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> of9(@NotNull T9 value) {
     return new OneOf9<>(null, null, null, null, null, null, null, null, value);
+  }
+
+  protected OneOf9(@Nullable T1 value1,
+                   @Nullable T2 value2,
+                   @Nullable T3 value3,
+                   @Nullable T4 value4,
+                   @Nullable T5 value5,
+                   @Nullable T6 value6,
+                   @Nullable T7 value7,
+                   @Nullable T8 value8,
+                   @Nullable T9 value9) {
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+    this.value6 = value6;
+    this.value7 = value7;
+    this.value8 = value8;
+    this.value9 = value9;
   }
 
   public @Nullable T1 _1() {
@@ -113,17 +111,15 @@ public class OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> {
     return value9;
   }
 
-  public void match(
-      @NotNull Consumer<T1> consumer1,
-      @NotNull Consumer<T2> consumer2,
-      @NotNull Consumer<T3> consumer3,
-      @NotNull Consumer<T4> consumer4,
-      @NotNull Consumer<T5> consumer5,
-      @NotNull Consumer<T6> consumer6,
-      @NotNull Consumer<T7> consumer7,
-      @NotNull Consumer<T8> consumer8,
-      @NotNull Consumer<T9> consumer9
-  ) {
+  public void match(@NotNull Consumer<T1> consumer1,
+                    @NotNull Consumer<T2> consumer2,
+                    @NotNull Consumer<T3> consumer3,
+                    @NotNull Consumer<T4> consumer4,
+                    @NotNull Consumer<T5> consumer5,
+                    @NotNull Consumer<T6> consumer6,
+                    @NotNull Consumer<T7> consumer7,
+                    @NotNull Consumer<T8> consumer8,
+                    @NotNull Consumer<T9> consumer9) {
     if (value1 != null) {
       consumer1.accept(value1);
       return;
@@ -163,17 +159,15 @@ public class OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> {
     throw new NoSuchElementException("None of the values are present");
   }
 
-  public @NotNull <R> R fold(
-      @NotNull Function<T1, R> function1,
-      @NotNull Function<T2, R> function2,
-      @NotNull Function<T3, R> function3,
-      @NotNull Function<T4, R> function4,
-      @NotNull Function<T5, R> function5,
-      @NotNull Function<T6, R> function6,
-      @NotNull Function<T7, R> function7,
-      @NotNull Function<T8, R> function8,
-      @NotNull Function<T9, R> function9
-  ) {
+  public @NotNull <R> R fold(@NotNull Function<T1, R> function1,
+                             @NotNull Function<T2, R> function2,
+                             @NotNull Function<T3, R> function3,
+                             @NotNull Function<T4, R> function4,
+                             @NotNull Function<T5, R> function5,
+                             @NotNull Function<T6, R> function6,
+                             @NotNull Function<T7, R> function7,
+                             @NotNull Function<T8, R> function8,
+                             @NotNull Function<T9, R> function9) {
     if (value1 != null) {
       return function1.apply(value1);
     }
@@ -487,7 +481,7 @@ public class OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> {
   public boolean equals(@Nullable Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    final var oneOf9 = (OneOf9<?, ?, ?, ?, ?, ?, ?, ?, ?>) o;
+    final OneOf9<?, ?, ?, ?, ?, ?, ?, ?, ?> oneOf9 = (OneOf9<?, ?, ?, ?, ?, ?, ?, ?, ?>) o;
     return Objects.equals(value1, oneOf9.value1)
         && Objects.equals(value2, oneOf9.value2)
         && Objects.equals(value3, oneOf9.value3)

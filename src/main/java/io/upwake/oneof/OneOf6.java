@@ -16,22 +16,6 @@ public class OneOf6<T1, T2, T3, T4, T5, T6> {
   private final @Nullable T5 value5;
   private final @Nullable T6 value6;
 
-  protected OneOf6(
-      @Nullable T1 value1,
-      @Nullable T2 value2,
-      @Nullable T3 value3,
-      @Nullable T4 value4,
-      @Nullable T5 value5,
-      @Nullable T6 value6
-  ) {
-    this.value1 = value1;
-    this.value2 = value2;
-    this.value3 = value3;
-    this.value4 = value4;
-    this.value5 = value5;
-    this.value6 = value6;
-  }
-
   public static @NotNull <T1, T2, T3, T4, T5, T6> OneOf6<T1, T2, T3, T4, T5, T6> of1(@NotNull T1 value) {
     return new OneOf6<>(value, null, null, null, null, null);
   }
@@ -54,6 +38,20 @@ public class OneOf6<T1, T2, T3, T4, T5, T6> {
 
   public static @NotNull <T1, T2, T3, T4, T5, T6> OneOf6<T1, T2, T3, T4, T5, T6> of6(@NotNull T6 value) {
     return new OneOf6<>(null, null, null, null, null, value);
+  }
+
+  protected OneOf6(@Nullable T1 value1,
+                   @Nullable T2 value2,
+                   @Nullable T3 value3,
+                   @Nullable T4 value4,
+                   @Nullable T5 value5,
+                   @Nullable T6 value6) {
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+    this.value6 = value6;
   }
 
   public @Nullable T1 _1() {
@@ -80,14 +78,12 @@ public class OneOf6<T1, T2, T3, T4, T5, T6> {
     return value6;
   }
 
-  public void match(
-      @NotNull Consumer<T1> consumer1,
-      @NotNull Consumer<T2> consumer2,
-      @NotNull Consumer<T3> consumer3,
-      @NotNull Consumer<T4> consumer4,
-      @NotNull Consumer<T5> consumer5,
-      @NotNull Consumer<T6> consumer6
-  ) {
+  public void match(@NotNull Consumer<T1> consumer1,
+                    @NotNull Consumer<T2> consumer2,
+                    @NotNull Consumer<T3> consumer3,
+                    @NotNull Consumer<T4> consumer4,
+                    @NotNull Consumer<T5> consumer5,
+                    @NotNull Consumer<T6> consumer6) {
     if (value1 != null) {
       consumer1.accept(value1);
       return;
@@ -115,14 +111,12 @@ public class OneOf6<T1, T2, T3, T4, T5, T6> {
     throw new NoSuchElementException("None of the values are present");
   }
 
-  public @NotNull <R> R fold(
-      @NotNull Function<T1, R> function1,
-      @NotNull Function<T2, R> function2,
-      @NotNull Function<T3, R> function3,
-      @NotNull Function<T4, R> function4,
-      @NotNull Function<T5, R> function5,
-      @NotNull Function<T6, R> function6
-  ) {
+  public @NotNull <R> R fold(@NotNull Function<T1, R> function1,
+                             @NotNull Function<T2, R> function2,
+                             @NotNull Function<T3, R> function3,
+                             @NotNull Function<T4, R> function4,
+                             @NotNull Function<T5, R> function5,
+                             @NotNull Function<T6, R> function6) {
     if (value1 != null) {
       return function1.apply(value1);
     }
@@ -280,7 +274,7 @@ public class OneOf6<T1, T2, T3, T4, T5, T6> {
   public boolean equals(@Nullable Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    final var oneOf6 = (OneOf6<?, ?, ?, ?, ?, ?>) o;
+    final OneOf6<?, ?, ?, ?, ?, ?> oneOf6 = (OneOf6<?, ?, ?, ?, ?, ?>) o;
     return Objects.equals(value1, oneOf6.value1)
         && Objects.equals(value2, oneOf6.value2)
         && Objects.equals(value3, oneOf6.value3)
