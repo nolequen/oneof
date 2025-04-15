@@ -1,33 +1,30 @@
 # OneOf
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.upwake/oneof)](https://central.sonatype.com/artifact/io.upwake/oneof)
 [![License](https://img.shields.io/github/license/nolequen/oneof)](licence.md)
+![Java 1.8](https://img.shields.io/badge/Supports%20Java-1.8-orange?logo=java)
 
 The library provides a kind of discriminated unions for Java: `OneOf<T0, ..., Tn>` holds the only value of the listed
 types `T0`...`Tn`.
 
-Inspired by [OneOf](https://github.com/mcintyre321/OneOf) library for C#.
+_Inspired by [OneOf](https://github.com/mcintyre321/OneOf) C# library._
 
-## Getting Started
+## Examples
 
-You can find latest release on Maven Central.
-
-* Maven:
-
-```xml
-
-<dependency>
-    <groupId>io.upwake</groupId>
-    <artifactId>oneof</artifactId>
-    <version>1.0.0</version>
-</dependency>
+* Matching the authentication result to one of several states and outputting a corresponding message based on that state
+```java
+OneOf3<User, AccountBanned, AuthError> result = authService.login(name, password);
+result.match(
+    user -> System.out.println("Welcome, " + user.getName() + "!"),
+    ban -> System.err.println("Account banned: " + ban.getReason()),
+    error -> System.err.println("Auth error: " + error.getMessage())
+);
 ```
-
-* Gradle:
-
-```kotlin
-implementation("io.upwake:oneof:1.0.0")
+* Folding the outcome of processing a payment into a unified message
+```java
+String message = paymentService.process(order).fold(
+  payment -> "Payment successful: Order " + payment.getOrderId() + ", amount " + payment.getAmount(),
+  error -> "Payment error: " + error.getMessage()
+);
+System.out.println(message);
 ```
-
-## Use cases
-
-TODO: should be described

@@ -89,7 +89,7 @@ jreleaser {
             author("@nolequen")
         }
         signing {
-           active = org.jreleaser.model.Active.ALWAYS
+            active = org.jreleaser.model.Active.ALWAYS
             armored = true
             verify = true
         }
@@ -107,6 +107,9 @@ jreleaser {
                     javadocJar = true
                 }
             }
+        }
+        github {
+            enabled = false
         }
     }
 }
